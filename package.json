@@ -24,6 +24,10 @@
       {
         "command": "snapfolio.addCode",
         "title": "Snapfolio: Add Code"
+      },
+      {
+        "command": "snapfolio.customizeSnippet",
+        "title": "Snapfolio: Customize Snippet Settings"
       }
     ],
     "configuration": {
