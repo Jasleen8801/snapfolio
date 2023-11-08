@@ -15,7 +15,15 @@
     "commands": [
       {
         "command": "snapfolio.authenticate",
-        "title": "Authenticate"
+        "title": "Snapfolio: Authenticate"
+      },
+      {
+        "command": "snapfolio.addText",
+        "title": "Snapfolio: Add Text"
+      },
+      {
+        "command": "snapfolio.addCode",
+        "title": "Snapfolio: Add Code"
       }
     ],
     "configuration": {
@@ -26,6 +34,14 @@
           "default": ""
         }
       }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "snapfolio.addCode",
+          "when": "editorTextFocus"
+        }
+      ]
     }
   },
   "scripts": {
