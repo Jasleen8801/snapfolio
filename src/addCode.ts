@@ -10,6 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
     const fontSize = vscode.workspace.getConfiguration('snapfolio').get('fontSize');
     const backgroundColor = vscode.workspace.getConfiguration('snapfolio').get('backgroundColor');
     const textEditor = vscode.window.activeTextEditor;
+    const page_id = vscode.workspace.getConfiguration('snapfolio').get('pageId');
     let flag: boolean = false;
     if(textEditor){
       const selectedText = textEditor.document.getText(textEditor.selection);
@@ -48,7 +49,8 @@ export function activate(context: vscode.ExtensionContext) {
             theme: theme,
             fontSize: fontSize,
             backgroundColor: backgroundColor,
-            output: selectedOutput
+            output: selectedOutput,
+            page_id: page_id
           });
           console.log(response.data);
         } else if(ans === 'n'){
@@ -60,7 +62,8 @@ export function activate(context: vscode.ExtensionContext) {
             description: description,
             theme: theme,
             fontSize: fontSize,
-            backgroundColor: backgroundColor
+            backgroundColor: backgroundColor,
+            page_id: page_id
           });
           console.log(response);
         }

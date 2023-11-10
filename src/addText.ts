@@ -18,49 +18,18 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			);
 
-			panel.webview.html = `
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<title>Add Text to Notion Page</title>
-			</head>
-			<body>
-				<h1>Add Text to Notion Page</h1>
-				<div>
-					<label>Subtitle: </label>
-					<input id="title" type="text" placeholder="(in bold)">
-				</div>
-				<div>
-					<label>Text: </label>
-					<input id="description" type="text" placeholder="Description">
-				</div>
-				<button id="customizeButton">Submit</button>
-
-				<script>
-					const vscode = acquireVsCodeApi();
-					const customizeButton = document.getElementById('customizeButton');
-					customizeButton.addEventListener('click', () => {
-						const title = document.getElementById('title').value;
-						const description = document.getElementById('description').value;
-						vscode.postMessage({
-							command: 'customize',
-							title: title,
-							description: description
-						});
-					});
-				</script>
-			</body>
-			</html>`;
+			panel.webview.html = html_content;
 			
 			panel.webview.onDidReceiveMessage(async (message) => {
 				if(message.command === 'customize'){
 					const { title, description } = message;
 					console.log(title, description);
+					const pageId = vscode.workspace.getConfiguration('snapfolio').get('pageId');
 					const response = await axios.post(`${API_URI}/notion/appendText`, {
 						bot_id: bot_id,
 						boldText: title,
-						text: description
+						text: description,
+						page_id: pageId
 					});
 					console.log(response);
 					if(response.status === 200){
@@ -80,3 +49,79 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() { }
+
+let html_content = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Text</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Text to Notion Page</h1>
+  <div>
+    <label for="title">Subtitle: </label>
+    <input id="title" type="text" placeholder="(in bold)">
+  </div>
+  <div>
+    <label for="description">Text: </label>
+    <input id="description" type="text" placeholder="Description">
+  </div>
+  <button id="customizeButton">Submit</button>
+
+  <script>
+    const vscode = acquireVsCodeApi();
+    const customizeButton = document.getElementById('customizeButton');
+
+    customizeButton.addEventListener('click', () => {
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+
+      vscode.postMessage({
+        command: 'customize',
+        title: title,
+        description: description
+      });
+    });
+  </script>
+</body>
+</html>`;

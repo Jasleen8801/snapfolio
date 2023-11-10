@@ -28,12 +28,24 @@
       {
         "command": "snapfolio.customizeSnippet",
         "title": "Snapfolio: Customize Snippet Settings"
+      },
+      {
+        "command": "snapfolio.createPage",
+        "title": "Snapfolio: Create New Page"
+      },
+      {
+        "command": "snapfolio.explorerView",
+        "title": "Snapfolio: Explorer View"
       }
     ],
     "configuration": {
       "title": "Snapfolio",
       "properties": {
         "snapfolio.botId": {
+          "type": "string",
+          "default": ""
+        },
+        "snapfolio.pageId": {
           "type": "string",
           "default": ""
         }

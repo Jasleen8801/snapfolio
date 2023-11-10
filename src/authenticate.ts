@@ -20,27 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		);
 
-		panel.webview.html = `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<title>Snapfolio</title>
-			</head>
-			<body>
-				<h1>Authentication</h1>
-				<p>Click the button below to authenticate.</p>
-				<button id="authenticate">Authenticate</button>
-				<script>
-					const vscode = acquireVsCodeApi();
-					const button = document.getElementById('authenticate');
-					button.addEventListener('click', () => {
-						vscode.postMessage({
-							command: 'authenticate'
-						});
-					});
-				</script>
-			</body>
-			</html>`;
+		panel.webview.html = html_content;
 
 		panel.webview.onDidReceiveMessage(async (message) => {
 			if (message.command === 'authenticate') {
@@ -80,3 +60,58 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() { }
+
+let html_content = `<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Snapfolio Authentication</title>
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 20px;
+			text-align: center;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		p {
+			color: #666;
+		}
+
+		button {
+			padding: 10px 20px;
+			font-size: 16px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	<h1>Snapfolio Authentication</h1>
+	<p>Click the button below to authenticate.</p>
+	<button id="authenticate">Authenticate</button>
+
+	<script>
+		const vscode = acquireVsCodeApi();
+		const button = document.getElementById('authenticate');
+
+		button.addEventListener('click', () => {
+			vscode.postMessage({
+				command: 'authenticate'
+			});
+		});
+	</script>
+</body>
+</html>`;
+

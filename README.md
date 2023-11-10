@@ -1,73 +1,109 @@
-# snapfolio README
+# Snapfolio - VSCode Extension
 
-This is the README for your extension "snapfolio". After writing up a brief description, we recommend including the following sections.
+## Description
+
+Snapfolio is a Visual Studio Code extension that seamlessly integrates with Notion, allowing you to enhance your workflow by customizing code snippets, adding text and code to Notion pages, creating new Notion pages, and exploring your content.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- **Authenticate with Notion:** Connect your Notion account to Snapfolio.
+- **Customize Snippets:** Tailor your code snippets with themes, font size, and background color.
+- **Add Text and Code to Notion Pages:** Enhance your Notion pages directly from VSCode.
+- **Create Notion Pages:** Quickly create new Notion pages with a specified title.
+- **Explorer View:** Navigate and manage your Snapfolio content directly within VSCode.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VSCode version 1.84.0 or higher.
+- Notion account.
 
-## Extension Settings
+## Installation
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. Launch VS Code.
+2. Go to Extensions.
+3. Search for "Snapfolio" and click Install.
 
-For example:
+## Local Installation
 
-This extension contributes the following settings:
+1. Clone the repository.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+    ```bash
+    git clone https://github.com/Jasleen8801/snapfolio.git
+    ```
 
-## Known Issues
+2. Clone the other repository.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+    ```bash
+    git clone https://github.com/Jasleen8801/Snapfolio-API.git
+    ```
+  
+3. Setup the backend repo as given in instructions [here](https://github.com/Jasleen8801/Snapfolio-API/blob/main/README.md).
 
-## Release Notes
+4. Open the project in VSCode.
 
-Users appreciate release notes as you update your extension.
+5. Install dependencies.
 
-### 1.0.0
+    ```bash
+    npm install
+    ```
+  
+6. Build the project.
 
-Initial release of ...
+    ```bash
+    npm run build
+    ```
 
-### 1.0.1
+7. Run the project.
 
-Fixed issue #.
+    ```bash
+    npm run watch
+    ```
 
-### 1.1.0
+8. Open a new VSCode window and open the project.
 
-Added features X, Y, and Z.
+9. Create a .env file in the root directory of the project and add the following:
 
----
+    ```bash
+    AUTHORIZATION_URL=<YOUR_AUTH_URL_AS_IN_BACKEND_API>
+    ```
 
-## Following extension guidelines
+10. Press `F5` to launch the extension in a new window.
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+11. Authenticate Snapfolio using the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and select "Snapfolio: Authenticate."
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+**Note**: The backend API assumes to be run on port 3000. If you want to change the port, make sure to change the port in the backend API as well. 
 
-## Working with Markdown
+## Getting Started
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+1. Open your project in VSCode.
+2. Authenticate Snapfolio using the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and select "Snapfolio: Authenticate."
+3. Customize snippets, add text to Notion, create Notion pages, and explore content using the available commands.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+## Commands
 
-## For more information
+- `Snapfolio: Authenticate`: Authenticate Snapfolio with your Notion account.
+- `Snapfolio: Customize Snippet`: Customize code snippet settings.
+- `Snapfolio: Add Text to Notion`: Add text to your Notion pages.
+- `Snapfolio: Add Code to Notion`: Add code (programming + output) to your Notion pages.
+- `Snapfolio: Create Notion Page`: Create a new Notion page.
+- `Snapfolio: Explorer View`: Open the Snapfolio Explorer View.
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+## Configuration
 
-**Enjoy!**
-# snapfolio
-# snapfolio
+- `snapfolio.theme`: Set the default theme for code snippets.
+- `snapfolio.fontSize`: Set the default font size for code snippets.
+- `snapfolio.backgroundColor`: Set the default background color for code snippets.
+- `snapfolio.botId`: Store the bot ID after authentication.
+- `snapfolio.pageId`: Store the current page ID.
+
+## Backend Node-Express API
+
+Snapfolio relies on a Node-Express backend API for handling Notion interactions. Explore the backend repository at [Backend Repository](https://github.com/Jasleen8801/Snapfolio-API).
+
+## Feedback
+
+If you encounter any issues or have suggestions, please [open an issue](https://github.com/Jasleen8801/snapfolio/issues) on GitHub.
+
+## Contributing
+
+Feel free to contribute to the development of Snapfolio. Fork the repository, make your changes, and submit a pull request.
