@@ -54,14 +54,16 @@ let html_content =  `
     }
 
     h1 {
-      color: #333;
+      color: #eee;
+      size: 50px;
     }
 
     label {
       display: block;
       margin-top: 10px;
       margin-bottom: 5px;
-      color: #555;
+      color: #eee;
+      font-size: 15px;
     }
 
     input {
@@ -72,16 +74,16 @@ let html_content =  `
 
     button {
       padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
+      font-size: 20px;
+      background-color: #214BDE;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #2123DE;
     }
   </style>
 </head>

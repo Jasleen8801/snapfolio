@@ -3,13 +3,15 @@ import * as dotenv from 'dotenv';
 import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
-  dotenv.config();
-	const AUTH_URL: string = process.env.AUTHORIZATION_URL || '';
+	dotenv.config();
+	// const AUTH_URL: string = process.env.AUTHORIZATION_URL || '';
+	const AUTH_URL: string = 'https://api.notion.com/v1/oauth/authorize?client_id=b608c940-c804-4788-b3f7-71ba638d2acf&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect_uri';
 	const API_URI: string = "http://localhost:3000";
 
-  let authDisposable = vscode.commands.registerCommand('snapfolio.authenticate', async () => {
+	let authDisposable = vscode.commands.registerCommand('snapfolio.authenticate', async () => {
 		const targetUri = vscode.Uri.parse(AUTH_URL);
 		await vscode.env.openExternal(targetUri);
+		// console.log(AUTH_URL);
 
 		const panel = vscode.window.createWebviewPanel(
 			'snapfolio',
@@ -56,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	});
 
-  context.subscriptions.push(authDisposable);
+	context.subscriptions.push(authDisposable);
 }
 
 export function deactivate() { }
@@ -75,25 +77,27 @@ let html_content = `<!DOCTYPE html>
 		}
 
 		h1 {
-			color: #333;
+			color: #eee;
+			size: 50px;
 		}
 
 		p {
 			color: #666;
+			font-size: 15px;
 		}
 
 		button {
 			padding: 10px 20px;
-			font-size: 16px;
-			background-color: #4CAF50;
+			font-size: 25px;
+			background-color: #214BDE;
 			color: white;
 			border: none;
-			border-radius: 5px;
+			border-radius: 20px;
 			cursor: pointer;
 		}
 
 		button:hover {
-			background-color: #45a049;
+			background-color: #2123DE;
 		}
 	</style>
 </head>
