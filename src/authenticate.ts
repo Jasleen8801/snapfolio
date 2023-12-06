@@ -43,6 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 								const { bot_id } = response.data;
 								const config = vscode.workspace.getConfiguration('snapfolio');
 								await config.update('botId', bot_id, vscode.ConfigurationTarget.Global);
+								await config.update('apiUrl', API_URI, vscode.ConfigurationTarget.Global);
 								vscode.window.showInformationMessage('Authentication successful!');
 								panel.dispose();
 							} else {

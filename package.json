@@ -48,6 +48,10 @@
         "snapfolio.pageId": {
           "type": "string",
           "default": ""
+        },
+        "snapfolio.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:3000"
         }
       }
     },

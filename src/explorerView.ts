@@ -2,7 +2,8 @@ import * as vscode from 'vscode';
 import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
-  const API_URI: string = "http://localhost:3000";
+  const API_URI: string = vscode.workspace.getConfiguration('snapfolio').get('apiUrl') || '';
+  // console.log(API_URI);
 
   const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   statusBarItem.text = "$(book) Snapfolio";
@@ -25,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
       statusBarItem.text = `$(book) Snapfolio - ${selectedPage}`;
 
       await vscode.workspace.getConfiguration('snapfolio').update('pageId', pages[index].id, vscode.ConfigurationTarget.Global);
-      console.log(pages[index].id);
+      // console.log(pages[index].id);
       vscode.window.showInformationMessage(`Selected Page: ${selectedPage}`);
     } catch (error) {
       vscode.window.showErrorMessage(`Please choose a page first!`);

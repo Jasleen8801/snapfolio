@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
-	const API_URI: string = "http://localhost:3000";
+	const API_URI: string = vscode.workspace.getConfiguration('snapfolio').get('apiUrl') || '';
   
   let addTextDisposable = vscode.commands.registerCommand('snapfolio.addText', async () => {
 		const bot_id = vscode.workspace.getConfiguration('snapfolio').get('botId');

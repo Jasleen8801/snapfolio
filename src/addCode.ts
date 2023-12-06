@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
-  const API_URI: string = "http://localhost:3000";
+  const API_URI: string = vscode.workspace.getConfiguration('snapfolio').get('apiUrl') || '';
 
   let addCodeDisposable = vscode.commands.registerCommand('snapfolio.addCode', async () => {
     const bot_id = vscode.workspace.getConfiguration('snapfolio').get('botId');
@@ -36,8 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
 
           const output = await vscode.window.showInputBox({
             prompt: "Check the output selected in the terminal",
-            value: selectedOutput,
-          });
+            placeHolder: selectedOutput,
+          }) || '';
           console.log(output);
 
           const response = await axios.post(`${API_URI}/notion/appendCode`, {
