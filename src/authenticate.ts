@@ -5,11 +5,13 @@ import axios from 'axios';
 export function activate(context: vscode.ExtensionContext) {
 	dotenv.config();
 	// const AUTH_URL: string = process.env.AUTHORIZATION_URL || '';
-	const AUTH_URL: string = 'https://api.notion.com/v1/oauth/authorize?client_id=b608c940-c804-4788-b3f7-71ba638d2acf&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect_uri';
-	const API_URI: string = "http://localhost:3000";
+	const AUTH_URL: string = 'https://api.notion.com/v1/oauth/authorize?client_id=b608c940-c804-4788-b3f7-71ba638d2acf&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fapp-pvtat5vj4a-uc.a.run.app%2Fauth%2Fredirect_uri';
+	const API_URI: string = "https://app-pvtat5vj4a-uc.a.run.app";
 
 	let authDisposable = vscode.commands.registerCommand('snapfolio.authenticate', async () => {
 		const targetUri = vscode.Uri.parse(AUTH_URL);
+		console.log(targetUri);
+		console.log(targetUri.toString());
 		await vscode.env.openExternal(targetUri);
 		// console.log(AUTH_URL);
 
@@ -34,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
 				if (input !== '') {
 					const url = new URL(input);
 					const code = url.searchParams.get('code');
-					// console.log(code);
+					console.log(code);
 					if (code) {
 						try {
 							const response = await axios.post(`${API_URI}/auth/redirect_uri?code=${code}`);
