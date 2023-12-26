@@ -7,8 +7,20 @@
     "vscode": "^1.84.0"
   },
   "publisher": "Snapfolio-8801",
-  "categories": ["Education", "Programming Languages", "Visualization", "Snippets", "Other"],
-  "keywords": ["coding", "note-taking", "collaboration", "themes", "workflow"],
+  "categories": [
+    "Education",
+    "Programming Languages",
+    "Visualization",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "coding",
+    "note-taking",
+    "collaboration",
+    "themes",
+    "workflow"
+  ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "markdown": "github",
@@ -72,13 +84,12 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./"
+},
   "devDependencies": {
     "@types/mocha": "^10.0.3",
     "@types/node": "18.x",
@@ -86,6 +97,7 @@
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "@vscode/test-electron": "^2.3.6",
+    "esbuild": "^0.19.10",
     "eslint": "^8.52.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
@@ -96,6 +108,9 @@
     "dotenv": "^16.3.1",
     "http": "^0.0.1-security"
   },
-  "extensionKind": ["ui", "workspace"],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
   "pricing": "Free"
 }
