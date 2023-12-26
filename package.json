@@ -21,6 +21,7 @@
     "themes",
     "workflow"
   ],
+  "icon": "images/snap.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "markdown": "github",
