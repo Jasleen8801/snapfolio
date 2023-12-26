@@ -1,16 +1,22 @@
 {
   "name": "snapfolio",
   "displayName": "Snapfolio",
-  "description": "Mini Project ",
-  "version": "0.0.1",
+  "description": "Seamlessly integrate coding and note-taking with Snapfolio. Add code snippets and notes to Notion directly from Visual Studio Code. Enhance collaboration, customize themes, and transform your development workflow effortlessly.",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.84.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "publisher": "Snapfolio-8801",
+  "categories": ["Education", "Programming Languages", "Visualization", "Snippets", "Other"],
+  "keywords": ["coding", "note-taking", "collaboration", "themes", "workflow"],
   "activationEvents": [],
   "main": "./out/extension.js",
+  "markdown": "github",
+  "qna": "marketplace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jasleen8801/snapfolio"
+  },
   "contributes": {
     "commands": [
       {
@@ -51,7 +57,7 @@
         },
         "snapfolio.apiUrl": {
           "type": "string",
-          "default": "http://localhost:3000"
+          "default": "https://app-pvtat5vj4a-uc.a.run.app"
         }
       }
     },
@@ -88,5 +94,7 @@
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "http": "^0.0.1-security"
-  }
+  },
+  "extensionKind": ["ui", "workspace"],
+  "pricing": "Free"
 }

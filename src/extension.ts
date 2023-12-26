@@ -16,4 +16,11 @@ export function activate(context: vscode.ExtensionContext) {
 	explorerViewActivate(context);
 }
 
-export function deactivate() { }
+export function deactivate() { 
+	authenticateDeactivate();
+	addTextDeactivate();
+	addCodeDeactivate();
+	customizeSnippetDectivate();
+	createPageDeactivate();
+	explorerViewDeactivate();
+}

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
   const API_URI: string = vscode.workspace.getConfiguration('snapfolio').get('apiUrl') || '';
-  // console.log(API_URI);
+  console.log(API_URI);
 
   const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   statusBarItem.text = "$(book) Snapfolio";

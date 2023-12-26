@@ -1,17 +1,21 @@
 import * as vscode from 'vscode';
-import * as dotenv from 'dotenv';
+// import * as dotenv from 'dotenv';
 import axios from 'axios';
 
 export function activate(context: vscode.ExtensionContext) {
-	dotenv.config();
+	// dotenv.config();
 	// const AUTH_URL: string = process.env.AUTHORIZATION_URL || '';
-	const AUTH_URL: string = 'https://api.notion.com/v1/oauth/authorize?client_id=b608c940-c804-4788-b3f7-71ba638d2acf&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fapp-pvtat5vj4a-uc.a.run.app%2Fauth%2Fredirect_uri';
-	const API_URI: string = "https://app-pvtat5vj4a-uc.a.run.app";
+	// const AUTH_URL: string = 'https://api.notion.com/v1/oauth/authorize?client_id=b608c940-c804-4788-b3f7-71ba638d2acf&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fapp-pvtat5vj4a-uc.a.run.app%2Fauth%2Fredirect_uri';
 
 	let authDisposable = vscode.commands.registerCommand('snapfolio.authenticate', async () => {
+		const API_URI: string = "https://app-pvtat5vj4a-uc.a.run.app";
+		const config = vscode.workspace.getConfiguration('snapfolio');
+		// const API_URI: string = config.get('apiUrl') || '';
+		const AUTH_URL: string = `${API_URI}/auth`;
 		const targetUri = vscode.Uri.parse(AUTH_URL);
-		console.log(targetUri);
-		console.log(targetUri.toString());
+		// console.log(targetUri);
+		// console.log(targetUri.toString());
+		vscode.window.showInformationMessage(targetUri.toString());
 		await vscode.env.openExternal(targetUri);
 		// console.log(AUTH_URL);
 
@@ -20,7 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
 			'Snapfolio',
 			vscode.ViewColumn.One,
 			{
-				enableScripts: true
+				enableScripts: true,
+				enableCommandUris: false	
 			}
 		);
 
@@ -28,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		panel.webview.onDidReceiveMessage(async (message) => {
 			if (message.command === 'authenticate') {
+				// await vscode.env.openExternal(targetUri);
 				const input: string = await vscode.window.showInputBox({
 					prompt: 'Enter your final Uri you copied',
 					placeHolder: 'Final URI'
